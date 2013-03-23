@@ -17,18 +17,19 @@ setTimeout(function() {
 /* *********************************************** */
 function pinSetup(pin, mode) {
 	var fs = require('fs');
-	fs.writeFile('/sys/class/gpio/export', pin);
-	fs.writeFile('/sys/class/gpio/gpio' + pin + '/direction', mode);
+NODE_DEBUG=fs
+	fs.writeFile('/sys/class/gpio/export', pin, function(err) {});
+	fs.writeFile('/sys/class/gpio/gpio' + pin + '/direction', mode, function(err) {});
 
 	return pin;
 }
 
 function pinOn(pin) {
 	var fs = require('fs');
-	fs.writeFile('/sys/class/gpio/gpio' + pin + '/value', '1');
+	fs.writeFile('/sys/class/gpio/gpio' + pin + '/value', '1', function(err) {});
 }
 
 function pinOff(pin) {
 	var fs = require('fs');
-	fs.writeFile('/sys/class/gpio/gpio' + pin + '/value', '0');
+	fs.writeFile('/sys/class/gpio/gpio' + pin + '/value', '0', function(err) {});
 }
